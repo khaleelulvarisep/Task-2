@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React Quotes App</title>
-    <!-- React and ReactDOM via CDN -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <!-- Babel for JSX support -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
@@ -23,7 +21,7 @@
           fetch("https://dummyjson.com/quotes")
             .then((res) => res.json())
             .then((data) => {
-              setQuotes(data.quotes.slice(0, 10)); // first 10
+              setQuotes(data.quotes.slice(0, 10)); 
             })
             .catch((err) => console.error("Error fetching quotes:", err));
         }, []);
@@ -43,3 +41,4 @@
     </script>
   </body>
 </html>
+
