@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Quotes App</title>
+    <!-- React and ReactDOM via CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel for JSX support -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useEffect, useState } = React;
+
+      function App() {
+        const [quotes, setQuotes] = useState([]);
+
+        useEffect(() => {
+          fetch("https://dummyjson.com/quotes")
+            .then((res) => res.json())
+            .then((data) => {
+              setQuotes(data.quotes.slice(0, 10)); // first 10
+            })
+            .catch((err) => console.error("Error fetching quotes:", err));
+        }, []);
+
+        return (
+          <div style={{ padding: "20px", fontFamily: "Arial" }}>
+            <h2>Quotes</h2>
+            {quotes.map((quote) => (
+              <h1 key={quote.id}>{quote.quote}</h1>
+            ))}
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
